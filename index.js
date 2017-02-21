@@ -20,6 +20,31 @@ function getRandomNumber(_min,_max) {
   return _randomNumber;
 }
 
+function checkAnswer(color1, color2, color3, color4) {
+  var color_match = 0;
+  var position_check = 0;
+  var color_check = [color1, color2, color3, color4];
+
+  var verify_answer = Array.from(answer);
+
+
+  for (i=0; i < 4; i++) {
+    var color_position = verify_answer.indexOf(color_check[i]);
+    console.log(color_position);
+    if ( color_position != -1)
+    {
+      if (i == color_position) {
+        verify_answer[color_position] = "GOOD";
+        position_check += 1;
+      }
+      else if (i== color_match) {
+        verify_answer[color_match] = "ok";
+        color_match += 1;
+      }
+    }
+  }
+}
+
 
 function allowDrop(ev) {
     ev.preventDefault();
@@ -35,6 +60,6 @@ function drop(ev) {
     var data = ev.dataTransfer.getData("text");
     var nodeCopy = document.getElementById(data).cloneNode(true);
     nodeCopy.id = "newId";
-    ev.target.appendChild(nodeCopy);
     ev.target.src=nodeCopy.src;
+    ev.target.color="red";
 }
