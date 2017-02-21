@@ -15,38 +15,53 @@ function startGame() {
   } while (answer.length < 4);
  	console.log (answer);
   // assign the answer images to the answer row.
-  document.getElementById("answer-image-one").src = answer[0]
-  document.getElementById("answer-image-two").src = answer[1]
-  document.getElementById("answer-image-three").src = answer[2]
-  document.getElementById("answer-image-four").src = answer[3]
+  document.getElementById("answer-image-one").src = answer[0];
+  document.getElementById("answer-image-two").src = answer[1];
+  document.getElementById("answer-image-three").src = answer[2];
+  document.getElementById("answer-image-four").src = answer[3];
+
 }
 function getRandomNumber(_min,_max) {
   var _randomNumber = Math.floor(Math.random() * (_max - _min)) + _min;  
   return _randomNumber;
 }
 
-function checkAnswer(color1, color2, color3, color4) {
-  var color_match = 0;
-  var position_check = 0;
-  var color_check = [color1, color2, color3, color4];
-
+function checkAnswer_position(color1, color2, color3, color4) {
+  var position_match = 0;
+  var position_check = [color1, color2, color3, color4];
   var verify_answer = Array.from(answer);
 
-
   for (i=0; i < 4; i++) {
-    var color_position = verify_answer.indexOf(color_check[i]);
-    console.log(color_position);
+    var color_position = verify_answer.indexOf(position_check[i]);
     if ( color_position != -1)
     {
       if (i == color_position) {
-        verify_answer[color_position] = "GOOD";
-        position_check += 1;
+        position_match += 1;
       }
-      else if (i== color_match) {
-        verify_answer[color_match] = "ok";
+    }
+  }
+  console.log(position_match);
+  for (i=0; i < position_match; i++) {
+    // for every position match assign the red pin
+    document.getElementById("identify"+i).src = "http://www.web-games-online.com/mastermind/images/bull.gif";
+  }
+}
+
+function checkAnswer_color(color1, color2, color3, color4) {
+  var color_match = 0;
+  var color_check = [color1, color2, color3, color4];
+  var verify_answer = Array.from(answer);
+
+  for (i=0; i < verify_answer.length; i++) {
+    for (k=0;k < color_check.length; k++) {
+      if (color_check[k] == verify_answer[i] ) {
         color_match += 1;
       }
     }
+  }
+  for (i=0; i < color_match; i++) {
+    // for every position match assign the red pin
+    document.getElementById("identify"+i).src = "http://www.web-games-online.com/mastermind/images/cow.gif";
   }
 }
 
