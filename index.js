@@ -14,6 +14,11 @@ function startGame() {
     availableColors.splice(myRandomNum, 1);
   } while (answer.length < 4);
  	console.log (answer);
+  // assign the answer images to the answer row.
+  document.getElementById("answer-image-one").src = answer[0]
+  document.getElementById("answer-image-two").src = answer[1]
+  document.getElementById("answer-image-three").src = answer[2]
+  document.getElementById("answer-image-four").src = answer[3]
 }
 function getRandomNumber(_min,_max) {
   var _randomNumber = Math.floor(Math.random() * (_max - _min)) + _min;  
