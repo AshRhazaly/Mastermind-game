@@ -1,0 +1,64 @@
+body {
+  background:url('http://i.imgur.com/UVgNolW.jpg');
+  background-size:cover;
+  background-repeat:no-repeat;
+
+}
+.header {
+  height:50px;
+}
+
+.header .logo {
+  height:100%;
+}
+
+.header .nav {
+  height:100%;
+}
+.header .nav .fathom {
+  background-color:none;
+}
+.header .nav .fathom .words {
+  float:left;
+}
+.content {
+  height:300px;
+}
+
+
+.content .photo .profile img {
+  display: block;
+  margin: 0 auto;
+  width:200px;
+  clear:both;
+  border-radius: 1px solid black;
+}
+.content .photo .profile p {
+  text-align:center;
+  font-family: 'Rubik', sans-serif;
+  color:white;
+  font-size:60px;
+}
+.contented .boxers .CV_BOX {
+  border:2.5px solid black;
+  border-radius:2px;
+  padding: 20px;
+}
+.contented .boxers .CV_BOX .CV {
+  text-align: center;
+  color:white;
+  font-family: 'Rubik', sans-serif;
+
+}
+.contented .boxers .Portfolio_BOX {
+  border:2.5px solid black;
+  padding: 20px;
+  border-radius:2px;
+  margin-left:5px;
+}
+
+.contented .boxers .Portfolio_BOX .Portfolio {
+  text-align: center;
+  color:white;
+  font-family: 'Rubik', sans-serif;
+}

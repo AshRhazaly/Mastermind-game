@@ -40,14 +40,21 @@ function btnCheckAnswer()
     for(i=0; i<4; i++) {
       input.push($(".guess-row" + submissionCount ).children()[i].src);
     }
+    // check if row is complete
+    if (input.length < 4) {
+      alert("Row is not complete");
+      submissionCount -= 1;
+    } else {
+      checkAnswer(input);
+    }
     // unique_input = $.unique(input);
-    checkAnswer(input);
   } else {
     document.getElementById("answer-image-one").src = answer[0];
     document.getElementById("answer-image-two").src = answer[1];
     document.getElementById("answer-image-three").src = answer[2];
     document.getElementById("answer-image-four").src = answer[3];
-    alert("Sorry you're out of tries, it's time to restart!");
+    alert("Sorry you're out of tries, Game will restart in 5 seconds!");
+    setTimeout(restartGame,5000);
   }
     $(".guess-row"+(submissionCount+1)).find("img").attr("ondrop","drop(event)");
 
