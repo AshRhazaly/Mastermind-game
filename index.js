@@ -6,6 +6,7 @@ var submissionCount=0;
 
 function startGame() {
   //initialize the game
+  alert("Game has started!")
   answer.splice(0, answer.length);
   var availableColors = Array.from(images);
   do {
@@ -14,35 +15,51 @@ function startGame() {
     answer.push(myRandomCol);
     availableColors.splice(myRandomNum, 1);
   } while (answer.length < 4);
-  // assign the answer images to the answer row.
-  document.getElementById("answer-image-one").src = answer[0];
-  document.getElementById("answer-image-two").src = answer[1];
-  document.getElementById("answer-image-three").src = answer[2];
-  document.getElementById("answer-image-four").src = answer[3];
-  document.getElementById("answer-key").style.display = "none";
-
   submissionCount=0;
+
+  for(i=2;i<8;i++)
+  {
+    $(".guess-row"+i).find("img").attr("ondrop","");
+  }
 
 }
 function getRandomNumber(_min,_max) {
   var _randomNumber = Math.floor(Math.random() * (_max - _min)) + _min;  
   return _randomNumber;
 }
-
+function restartGame() {
+  location.reload();
+}
 function btnCheckAnswer()
 {
+
   submissionCount++;
 
-  
+  if (submissionCount <7) {
+    var input =[];
+    for(i=0; i<4; i++) {
+      input.push($(".guess-row" + submissionCount ).children()[i].src);
+    }
+    // unique_input = $.unique(input);
+    checkAnswer(input);
+  } else {
+    document.getElementById("answer-image-one").src = answer[0];
+    document.getElementById("answer-image-two").src = answer[1];
+    document.getElementById("answer-image-three").src = answer[2];
+    document.getElementById("answer-image-four").src = answer[3];
+    alert("Sorry you're out of tries, it's time to restart!");
+  }
+    $(".guess-row"+(submissionCount+1)).find("img").attr("ondrop","drop(event)");
+
 }
 
-function checkAnswer(color1, color2, color3, color4) {
+function checkAnswer(color) {
   var position_match = 0;
-  var position_check = [color1, color2, color3, color4];
-  var color1 = document.getElementById("");
+  var position_check = color;
   var verify_answer = Array.from(answer);
 
   for (i=0; i < 4; i++) {
+    // check for position matches
     var color_position = verify_answer.indexOf(position_check[i]);
     if ( color_position != -1)
     {
@@ -51,15 +68,22 @@ function checkAnswer(color1, color2, color3, color4) {
       }
     }
   }
-  for (i=0; i < position_match; i++) {
+
+  for (i=5; i < 5 + position_match ; i++) {
     // for every position match assign the red pin
-    document.getElementById("identify"+i).src = "http://www.web-games-online.com/mastermind/images/bull.gif";
+    $(".guess-row" + submissionCount).children()[i].src = "http://www.web-games-online.com/mastermind/images/bull.gif";
   }
 
+  if (position_match == 4){
+    alert("congrats you solved it!");
+    document.getElementById("answer-image-one").src = answer[0];
+    document.getElementById("answer-image-two").src = answer[1];
+    document.getElementById("answer-image-three").src = answer[2];
+    document.getElementById("answer-image-four").src = answer[3];
+  }
 
   var color_match = 0;
-  var color_check = [color1, color2, color3, color4];
-  var verify_answer = Array.from(answer);
+  var color_check = $.unique(color);
 
   for (i=0; i < verify_answer.length; i++) {
     for (k=0;k < color_check.length; k++) {
@@ -68,11 +92,15 @@ function checkAnswer(color1, color2, color3, color4) {
       }
     }
   }
+  console.log(color_match);
   var color_total = color_match - position_match;
-  for (i=0; i < color_total; i++) {
+  console.log(color_total);
+  for (i=5+position_match; i < 5 +position_match + color_total; i++) {
     // for every position match assign the red pin
-    document.getElementById("identify"+i).src = "http://www.web-games-online.com/mastermind/images/cow.gif";
+    $(".guess-row" + submissionCount).children()[i].src = "http://www.web-games-online.com/mastermind/images/cow.gif";
+
   }
+
 }
 
 function allowDrop(ev) {
@@ -90,5 +118,4 @@ function drop(ev) {
     var nodeCopy = document.getElementById(data).cloneNode(true);
     nodeCopy.id = "newId";
     ev.target.src=nodeCopy.src;
-    ev.target.color="red";
 }
