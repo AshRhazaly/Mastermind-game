@@ -35,19 +35,19 @@ function btnCheckAnswer()
 
   submissionCount++;
 
-  if (submissionCount <7) {
+  if (submissionCount <8) {
     var input =[];
     for(i=0; i<4; i++) {
       input.push($(".guess-row" + submissionCount ).children()[i].src);
+      // check if row is complete
+      if (input[i] == "http://www.web-games-online.com/mastermind/images/color_hole.gif") {
+        alert("Row is not complete");
+        submissionCount -= 1;
+      }
     }
     // check if row is complete
-    if (input.length < 4) {
-      alert("Row is not complete");
-      submissionCount -= 1;
-    } else {
-      checkAnswer(input);
-    }
-    // unique_input = $.unique(input);
+    checkAnswer(input);
+
   } else {
     document.getElementById("answer-image-one").src = answer[0];
     document.getElementById("answer-image-two").src = answer[1];
