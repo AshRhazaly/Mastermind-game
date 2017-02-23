@@ -59,7 +59,9 @@ function btnCheckAnswer()
     alert("Sorry you're out of tries, Game will restart in 5 seconds!");
     setTimeout(restartGame,5000);
   }
+  // allows the next row to be droppable
     $(".guess-row"+(submissionCount+1)).find("img").attr("ondrop","drop(event)");
+  // allows the check answer button to be clickable.
     $(".guess-row"+(submissionCount+1)).find("button").attr("onclick","btnCheckAnswer()");
 
 
@@ -114,7 +116,7 @@ function checkAnswer(color) {
   }
   var color_total = color_match - position_match;
   for (i=5+position_match; i < 5 +position_match + color_total; i++) {
-    // for every position match assign the red pin
+    // for every color match assign the white pin
     $(".guess-row" + submissionCount).children()[i].src = "http://www.web-games-online.com/mastermind/images/cow.gif";
 
   }
