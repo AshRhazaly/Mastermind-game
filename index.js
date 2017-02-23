@@ -85,7 +85,7 @@ function checkAnswer(color) {
     // for every position match assign the red pin
     $(".guess-row" + submissionCount).children()[i].src = "http://www.web-games-online.com/mastermind/images/bull.gif";
   }
-
+// win check
   if (position_match == 4){
     alert("congrats you solved it!");
     document.getElementById("answer-image-one").src = answer[0];
@@ -102,6 +102,7 @@ function checkAnswer(color) {
   }
 
   var color_match = 0;
+  // get rids of duplicate colors
   var color_check = $.unique(color);
 
   for (i=0; i < verify_answer.length; i++) {
@@ -111,9 +112,7 @@ function checkAnswer(color) {
       }
     }
   }
-  console.log(color_match);
   var color_total = color_match - position_match;
-  console.log(color_total);
   for (i=5+position_match; i < 5 +position_match + color_total; i++) {
     // for every position match assign the red pin
     $(".guess-row" + submissionCount).children()[i].src = "http://www.web-games-online.com/mastermind/images/cow.gif";
@@ -122,6 +121,7 @@ function checkAnswer(color) {
 
 }
 
+// drag and drop
 function allowDrop(ev) {
     ev.preventDefault();
 }
