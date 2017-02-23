@@ -19,7 +19,10 @@ function startGame() {
 
   for(i=2;i<8;i++)
   {
+    // cant drop answers onto rows above.
     $(".guess-row"+i).find("img").attr("ondrop","");
+    // cant check answers above current row
+    $(".guess-row"+i).find("button").attr("onclick","");
   }
 
 }
@@ -57,6 +60,8 @@ function btnCheckAnswer()
     setTimeout(restartGame,5000);
   }
     $(".guess-row"+(submissionCount+1)).find("img").attr("ondrop","drop(event)");
+    $(".guess-row"+(submissionCount+1)).find("button").attr("onclick","btnCheckAnswer()");
+
 
 }
 
