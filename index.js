@@ -51,7 +51,7 @@ function btnCheckAnswer()
     // check if row is complete
     checkAnswer(input);
 
-  } 
+  }
   // allows the next row to be droppable
     $(".guess-row"+(submissionCount+1)).find("img").attr("ondrop","drop(event)");
   // allows the check answer button to be clickable.
@@ -88,6 +88,7 @@ function checkAnswer(color) {
     document.getElementById("answer-image-three").src = answer[2];
     document.getElementById("answer-image-four").src = answer[3];
   } else if (position_match < 4 && submissionCount == 7) {
+    // on the last row if attempt is wrong , display answer and restart game.
     document.getElementById("answer-image-one").src = answer[0];
     document.getElementById("answer-image-two").src = answer[1];
     document.getElementById("answer-image-three").src = answer[2];
