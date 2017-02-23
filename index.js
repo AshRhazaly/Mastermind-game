@@ -92,6 +92,13 @@ function checkAnswer(color) {
     document.getElementById("answer-image-two").src = answer[1];
     document.getElementById("answer-image-three").src = answer[2];
     document.getElementById("answer-image-four").src = answer[3];
+  } else if (position_match < 4 && submissionCount == 7) {
+    document.getElementById("answer-image-one").src = answer[0];
+    document.getElementById("answer-image-two").src = answer[1];
+    document.getElementById("answer-image-three").src = answer[2];
+    document.getElementById("answer-image-four").src = answer[3];
+    alert("Sorry you're out of tries, Game will restart in 5 seconds!");
+    setTimeout(restartGame,5000);
   }
 
   var color_match = 0;
