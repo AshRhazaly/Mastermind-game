@@ -51,14 +51,7 @@ function btnCheckAnswer()
     // check if row is complete
     checkAnswer(input);
 
-  } else {
-    document.getElementById("answer-image-one").src = answer[0];
-    document.getElementById("answer-image-two").src = answer[1];
-    document.getElementById("answer-image-three").src = answer[2];
-    document.getElementById("answer-image-four").src = answer[3];
-    alert("Sorry you're out of tries, Game will restart in 5 seconds!");
-    setTimeout(restartGame,5000);
-  }
+  } 
   // allows the next row to be droppable
     $(".guess-row"+(submissionCount+1)).find("img").attr("ondrop","drop(event)");
   // allows the check answer button to be clickable.
